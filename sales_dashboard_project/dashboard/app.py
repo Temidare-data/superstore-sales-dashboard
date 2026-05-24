@@ -4,19 +4,25 @@ import plotly.express as px
 
 st.set_page_config(page_title="Superstore Sales Dashboard", layout="wide")
 
-# Deep Dark Theme + Bold White Text
+# Deep Dark Theme
 st.markdown("""
     <style>
     .main, .stApp {background-color: #0A0A0A !important;}
     .stSidebar {background-color: #111111 !important;}
     h1, h2, h3, p, label, .stMetricLabel {color: #FFFFFF !important; font-weight: bold !important;}
-    .stMetricValue {color: #00FFAA !important; font-weight: bold !important; font-size: 28px !important;}
-    .stMultiSelect label, .stDateInput label {color: #FFFFFF !important; font-weight: bold !important;}
+    .stMetricValue {color: #00FFAA !important; font-weight: bold !important;}
     </style>
     """, unsafe_allow_html=True)
 
-# Load Data
-df = pd.read_csv('../data/superstore_cleaned.csv')
+# Correct Path
+import os
+
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, '..', 'data', 'superstore_cleaned.csv')
+
+df = pd.read_csv(csv_path)
 df['Order Date'] = pd.to_datetime(df['Order Date'], errors='coerce')
 df['Ship Date'] = pd.to_datetime(df['Ship Date'], errors='coerce')
 df['Shipping Days'] = (df['Ship Date'] - df['Order Date']).dt.days
@@ -99,7 +105,7 @@ with tab6:
     shipping = filtered_df.groupby('Ship Mode')['Shipping Days'].mean().reset_index()
     st.plotly_chart(px.bar(shipping, x='Ship Mode', y='Shipping Days', title="Average Shipping Days by Ship Mode"), use_container_width=True)
 
-# Download Button
+# Download
 csv = filtered_df.to_csv(index=False)
 st.download_button("📥 Download Filtered Data", csv, "filtered_sales_data.csv", "text/csv")
 

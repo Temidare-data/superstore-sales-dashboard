@@ -14,6 +14,7 @@ st.markdown("**Advanced Dashboard** - Hielite Academy (Oni Temidare David)")
 
 st.title("📉 Discount Analysis")
 
+import os
 df = pd.read_csv('../data/superstore_cleaned.csv')
 
 st.plotly_chart(px.scatter(df, x='Discount', y='Profit', color='Category', 

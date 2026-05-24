@@ -14,6 +14,8 @@ st.markdown("**Advanced Dashboard** - Hielite Academy (Oni Temidare David)")
 
 st.title("🚚 Shipping Performance")
 
+import os
+
 df = pd.read_csv('../data/superstore_cleaned.csv')
 df['Order Date'] = pd.to_datetime(df['Order Date'], errors='coerce')
 df['Ship Date'] = pd.to_datetime(df['Ship Date'], errors='coerce')

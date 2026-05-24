@@ -14,6 +14,7 @@ st.markdown("**Advanced Dashboard** - Hielite Academy (Oni Temidare David)")
 
 st.title("📈 Trends")
 
+import os
 df = pd.read_csv('../data/superstore_cleaned.csv')
 df['Order Date'] = pd.to_datetime(df['Order Date'], errors='coerce')
 

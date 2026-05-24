@@ -14,6 +14,8 @@ st.markdown("**Advanced Dashboard** - Hielite Academy (Oni Temidare David)")
 
 st.title("🗺️ Geography")
 
+import os
+
 df = pd.read_csv('../data/superstore_cleaned.csv')
 
 state_sales = df.groupby('State')['Sales'].sum().reset_index()

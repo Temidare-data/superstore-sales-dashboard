@@ -14,6 +14,8 @@ st.markdown("**Advanced Dashboard** - Hielite Academy (Oni Temidare David)")
 
 st.title("🔝 Top Products")
 
+import os
+
 df = pd.read_csv('../data/superstore_cleaned.csv')
 
 c1, c2 = st.columns(2)
